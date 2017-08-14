@@ -1,0 +1,184 @@
+body {
+  overflow: hidden;
+  font-family: 'Avenir' !important;
+}
+
+body {
+  padding: 0;
+}
+
+/*NAV BAR*/
+
+.navbar {
+  z-index: 10000000000;
+  background: rgba(0, 0, 0, 0.8);
+  border-bottom: 2px solid #F5A623;
+  height: 7vh;
+  max-height: 7vh;
+}
+
+.navbar-brand {
+  background: url(../data/pclogo.svg);
+  left: 15px;
+  height: 7vh;
+  max-height: 7vh;
+  width: auto;
+  max-width: 80px;
+  padding-bottom: :1vh;
+  padding-top: .5vh;
+  margin-bottom: 1vh;
+}
+
+
+/*Left Mod*/
+
+.left-mod {
+  margin-top: 2%;
+  position: absolute;
+  width: 12%;
+  height: 85vh;
+  left: 2%;
+  z-index: 100000;
+}
+
+.left-mod .piechart {
+  position: relative;
+  margin: 3%;
+  margin-top: 5%;
+  height: 30vh;
+  /*border-radius: 25px;*/
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  border: 1px solid white;
+}
+
+.left-mod .piechart canvas {
+  display: block;
+  padding: 5%;
+}
+
+.left-mod .dynamic {
+  margin: 3%;
+  height: 40vh;
+  background-color: rgba(0, 0, 0, 0.8);
+  width: 100%;
+  border: 1px solid white;
+}
+
+.left-mod .label {
+  color: #F5A623;
+  text-align: center;
+  font-size: 3.2vmin;
+}
+
+.left-mod #chart {
+  margin: 0 auto;
+  z-index: 10000000000000000;
+}
+
+.left-mod svg {
+  display: block;
+  float: left;
+}
+
+.info {
+  text-align: center;
+  text-overflow: visible;
+  padding-top: 10%
+}
+
+.contentval {
+  color: #F5A623;
+  text-align: left;
+  font-size: 2.2vmin;
+}
+
+.contentlabel {
+  color: #646464;
+  font-size: 1.2vmin;
+  text-align: left;
+}
+
+p {
+  margin: 0px;
+  padding: 0px;
+}
+
+.eld {
+  padding: 0 0 20% 20%;
+}
+
+.dist {
+  text-align: center !important;
+  color: white;
+  font-size: 2.2vmin;
+}
+
+
+/*Right Mod*/
+
+.right-mod {
+  left: 90%;
+  z-index: 100000;
+  margin-top: 2%;
+  position: absolute;
+  /*border-radius: 25px;*/
+  width: 8%;
+  height: 80vh;
+
+}
+.slidercontainer{
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  height: 50vh;
+
+}
+
+.slider {
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 20vh;
+
+}
+
+output {
+  font-size: 3.2vmin;
+  padding: .3em;
+  color: #F5A623;
+}
+
+.mbps {
+  color: #F5A623;
+  text-align: center;
+  font-size: 2.2vmin;
+}
+
+
+.right-mod .toggles{
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  margin-top: 5%;
+  color: white;
+  text-align: left;
+}
+
+.right-mod .toggles label{
+  text-align: center;
+  margin: 5%;
+  font-size: 1.2vmin;
+}
+
+.right-mod .disclaimer{
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  margin-top: 5%;
+  color: white;
+}
+.right-mod .disclaimer p{
+  padding: 5px;
+  font-size: 1.2vmin;
+  text-align: center;
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="icon" href="../../favicon.ico">
+
+  <title>Alpha</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+
+  <!-- Bootstrap core CSS -->
+  <link href="../bootstrap4/dist/css/bootstrap.min.css" rel="stylesheet">
+
+
+  <!-- <link href= "../node_modules/leaflet.markercluster/dist/MarkerCluster.Default.css" rel="stylesheet"> -->
+
+  <!-- Custom styles for this template -->
+  <link href="../css/starter-template.css" rel="stylesheet">
+  <!-- Leaflet css -->
+  <link rel="stylesheet" href="../node_modules/leaflet/dist/leaflet.css" />
+  <!-- leaflet js file -->
+  <script src="../node_modules/leaflet/dist/leaflet.js"></script>
+
+
+
+  <!-- mapbox file -->
+  <script src='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.js'></script>
+  <link href='https://api.mapbox.com/mapbox-gl-js/v0.38.0/mapbox-gl.css' rel='stylesheet' />
+
+  <script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.js'></script>
+  <link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-compare/v0.1.0/mapbox-gl-compare.css' type='text/css' />
+  <scr type="text/javascript" src="../data/maujson.js"></scr>
+
+
+
+
+
+
+  <style>
+    .map {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  </style>
+
+</head>
+
+
+<body>
+
+
+  <div class="left-mod">
+
+    <div class="piechart">
+
+    </div>
+    <div class="class">
+
+    </div>
+    <div class="teachers">
+
+    </div>
+    <div class="students">
+
+    </div>
+
+  </div>
+
+  <div class="right-mod">
+    <div class="slider">
+
+    </div>
+
+  </div>
+
+  <div class="map" id="mapid"></div>
+
+  <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script src="../bootstrap4/dist/js/bootstrap.min.js"></script>
+  <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+  <script src="../bootstrap4/docs/assets/js/ie10-viewport-bug-workaround.js"></script>
+  <script type="text/javascript" src="../node_modules/geojson/geojson.min.js"></script>
+  <script type="text/javascript" src="../js/close.js"></script>
+  <script type="text/javascript" src="../js/bootstrap-slider.js"></script>
+
+
+
+
+  <script type="text/javascript">
+    function getColor(num) {
+      var num = parseInt(num);
+
+      if (num < 50) {
+        return "#14D812"
+      }
+      if (num < 150) {
+        return "#70D10D"
+      }
+      if (num < 400) {
+        return "#CACB08"
+      }
+      if (num < 800) {
+        return "#C56604"
+      } else {
+        return "#BF0100"
+      }
+
+    }
+
+    var mymap = L.map('mapid', {
+      zoomControl: false
+    }).setView([0, 0], 4);
+
+
+    L.control.zoom({
+      position: 'bottomleft'
+    }).addTo(mymap);
+
+    var streetlayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 20,
+      minZoom: 3,
+      id: 'mapbox.streets',
+      accessToken: 'pk.eyJ1IjoiYXlhbmV6IiwiYSI6ImNqNHloOXAweTFveWwzM3A4M3FkOWUzM2UifQ.GfClkT4QxlFDC_xiI37x3Q'
+    });
+
+    var darklayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 20,
+      minZoom: 3,
+      id: 'mapbox.dark',
+      accessToken: 'pk.eyJ1IjoiYXlhbmV6IiwiYSI6ImNqNHloOXAweTFveWwzM3A4M3FkOWUzM2UifQ.GfClkT4QxlFDC_xiI37x3Q'
+    });
+
+    var satillitelayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+      attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
+      maxZoom: 20,
+      minZoom: 3,
+      id: 'mapbox.satellite',
+      accessToken: 'pk.eyJ1IjoiYXlhbmV6IiwiYSI6ImNqNHloOXAweTFveWwzM3A4M3FkOWUzM2UifQ.GfClkT4QxlFDC_xiI37x3Q'
+    });
+    var terminalLayer = L.tileLayer('https://api.mapbox.com/styles/v1/ayanez/cj653uorm5vw72ro58jxbzkj3/tiles/256/{z}/{x}/{y}?access_token={accessToken}', {
+      maxZoom: 20,
+      minZoom: 2,
+      accessToken: 'pk.eyJ1IjoiYXlhbmV6IiwiYSI6ImNqNHloOXAweTFveWwzM3A4M3FkOWUzM2UifQ.GfClkT4QxlFDC_xiI37x3Q'
+    });
+
+    darklayer.addTo(mymap);
+
+    var baseLayers = {
+      "Dark Layer": darklayer,
+      "Street Layer": streetlayer,
+      "Satellite Layer": satillitelayer,
+      "Terminal Layer": terminalLayer
+    };
+
+    control = L.control.layers(baseLayers, null, {
+      position: 'bottomright'
+    }).addTo(mymap);
+  </script>
+</body>
+
+</html>
