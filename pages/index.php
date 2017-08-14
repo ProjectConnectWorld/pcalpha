@@ -24,6 +24,7 @@
   <link rel='stylesheet' href='../node_modules/rangeslider.js/dist/rangeslider.css' type='text/css' />
   <!-- Custom styles -->
   <link href="../css/starter-template.css" rel="stylesheet">
+  <script src="https://use.fontawesome.com/5b36c1571c.js"></script>
 
 
   <!-- JS -->
@@ -37,6 +38,8 @@
   <!-- Custom JS -->
   <script type="text/javascript" src="../data/maujson.js"></script>
   <script src="../js/helperfunctions.js"></script>
+
+
 
 
   <style>
@@ -63,10 +66,15 @@
   <div class="left-mod">
     <div class="label">
       Country Attributes
+        <!-- <button type="button" class="btn" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
+        <i class="fa fa-info-circle fa-inverse " aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right"
+        data-content="This gives general information about schools in the entire country. "></i>
+        <!-- <button type="button" name="button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
     </div>
-    <div class="dynamic row info">
-      <div class="content">
+    <div class="dynamic">
 
+
+      <div class="content">
         <!-- Schools -->
         <div class="schools eld">
           <p class="contentval" id="nschools">1234087</p>
@@ -96,9 +104,10 @@
     </div>
 
     <!-- Pie Chart Left Mod Section -->
-    <div class="piechart " id="piechart">
-      <div class="dist">
-        Connectivity
+    <div class="piechart  " id="piechart">
+      <div class="dist">Connectivity
+          <i class="fa fa-info-circle fa-inverse pull-right infoc2" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right"
+          data-content="This shows the percentage of schools in the window, based on the threshold speed chosen in the slider. For instance, if you are zoomed in and only looking at schools in Nouakchott, and you have the slider set at 6 Mpbs, it will show you the percentage of schools connected with a speed over 6 Mpbs, under 6 Mpbs, and those schools with 0 connection in Nouakchott."></i>
       </div>
 
       <canvas id="chart" style: "padding: 10px"/>
@@ -109,6 +118,8 @@
   <!-- Right Module -->
   <div class="right-mod">
     <div class="slidercontainer">
+      <i class="fa fa-info-circle fa-inverse pull-left infoc3" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
+      data-content="This slider shows threshold internet speed. For instance, if you only want to see schools that have a connectivity speed of over 4 Mpbs, put the slider on 4 and the schools below this speed will turn red. Uncheck the box to make all schools that are not connected, regarless of the threshhold, gray. "></i>
       <div class="slider">
         <input type="range" min="0" max="8" value="0" data-rangeslider data-orientation="vertical">
         <output></output>
@@ -140,6 +151,7 @@
 
   <!-- Tether( Needed For Bootstrap) -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="../node_modules/popper.js/dist/popper.min.js"></script>
   <!-- Bootstrap JS -->
   <script src="../bootstrap4/dist/js/bootstrap.min.js"></script>
   <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
@@ -157,6 +169,9 @@
 
 
   <script type="text/javascript">
+  $(function () {
+  $('[data-toggle="popover"]').popover()
+});
     // MAP Creation
     var mymap = L.map('mapid', {
       zoomControl: false
