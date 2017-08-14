@@ -62,7 +62,7 @@
   <!-- Left Module  -->
   <div class="left-mod">
     <div class="label">
-      Connectivity
+      Country Attributes
     </div>
     <div class="dynamic row info">
       <div class="content">
@@ -71,9 +71,13 @@
         <div class="schools eld">
           <p class="contentval" id="nschools">1234087</p>
           <p class="contentlabel">SCHOOLS</p>
-
-          <!-- Classrooms -->
         </div>
+        <!-- Connected Schools -->
+        <div class="schools eld">
+          <p class="contentval" id="cschools">1234087</p>
+          <p class="contentlabel">CONN SCHOOLS</p>
+        </div>
+          <!-- Classrooms -->
         <div class="classrooms eld">
           <p class="contentval" id="nclassrooms">38000</p>
           <p class="contentlabel">CLASSROOMS</p>
@@ -94,7 +98,7 @@
     <!-- Pie Chart Left Mod Section -->
     <div class="piechart " id="piechart">
       <div class="dist">
-        DISTRIBUTION
+        Connectivity
       </div>
 
       <canvas id="chart" style: "padding: 10px"/>
@@ -116,8 +120,8 @@
     </div>
 
 
-    <div class="toggles radio ">
-      <label><input type="checkbox" name="optradio" id="myCheck" onclick="checkAddress(this)"> Show Not Connected</label>
+    <div class="toggles ">
+      <label><input type="checkbox" name="optradio" id="myCheck"  checked="checked"  onclick="checkAddress(this)"> Show 0-Conn</label>
     </div>
     <div class="disclaimer">
       <p>Connectivity data is randomly generated</p>
@@ -158,7 +162,8 @@
       zoomControl: false
     }).setView([18.0079, -10.9408], 7);
     var mybounds = mymap.getBounds();
-    getdisplayinfo(mybounds);
+    //getdisplayinfo(mybounds);
+    getstaticdisplayinfo(mybounds)
 
 
     L.control.zoom({
@@ -217,7 +222,12 @@
     //Creates Logic to refresh viewport Info
     mymap.on('moveend', function(e) {
       var mybounds = mymap.getBounds();
-      getdisplayinfo(mybounds);
+      var check= document.getElementById("myCheck").checked;
+      var sliderval=$('input[type="range"]').val();
+      var dots= getdisplaypie(mybounds,sliderval,check)
+      //getdisplayinfo(mybounds);
+      getstaticdisplayinfo(mybounds)
+      drawgraph(sliderval, myPie,dots)
 
     });
 
@@ -260,6 +270,10 @@
     window.onload = function() {
       var ctx = document.getElementById("chart").getContext("2d");
       window.myPie = new Chart(ctx, config);
+      var mybounds = mymap.getBounds();
+      var check= document.getElementById("myCheck").checked;
+      var dots= getdisplaypie(mybounds,0,check)
+      drawgraph(0, myPie,dots);
 
     };
 
@@ -285,8 +299,12 @@
         onSlide: function(position, value) {
           prevstate = currstate;
           currstate = value;
-          drawgraph(value, myPie)
+          // drawgraph(value, myPie)
           redraw(value, mymap);
+          var mybounds = mymap.getBounds();
+          var check= document.getElementById("myCheck").checked;
+          var dots= getdisplaypie(mybounds,value,check)
+          drawgraph(value, myPie,dots)
 
         }
       })

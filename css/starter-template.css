@@ -68,7 +68,7 @@ body {
 .left-mod .label {
   color: #F5A623;
   text-align: center;
-  font-size: 3.2vmin;
+  font-size: 2.2vmin;
 }
 
 .left-mod #chart {
@@ -105,7 +105,7 @@ p {
 }
 
 .eld {
-  padding: 0 0 20% 20%;
+  padding: 0 0 10% 20%;
 }
 
 .dist {
@@ -124,7 +124,7 @@ p {
   position: absolute;
   /*border-radius: 25px;*/
   width: 8%;
-  height: 80vh;
+  height: 75vh;
 
 }
 .slidercontainer{
@@ -167,8 +167,8 @@ output {
 
 .right-mod .toggles label{
   text-align: center;
-  margin: 5%;
-  font-size: 2.2vmin;
+  margin: 3%;
+  font-size: 1.8vmin;
 }
 
 .right-mod .disclaimer{

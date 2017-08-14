@@ -40,6 +40,38 @@ function getdisplayinfo(mybounds) {
   document.getElementById("nstudents").innerHTML = totalout.instudents;
 }
 
+
+function getstaticdisplayinfo(mybounds) {
+  var totalout = {
+    schools: 0,
+    cschools: 0,
+    classrooms: 0,
+    teachers: 0,
+    students: 0
+
+  };
+
+  for (var i = 0; i < maudata.length; i++) {
+    for (var j = 0; j < maudata[i].length; j++) {
+      if (maudata[i][j].lat && maudata[i][j].lon) {
+        var latlng = L.latLng(maudata[i][j].lat, maudata[i][j].lon);
+          totalout.schools = totalout.schools + 1;
+          totalout.classrooms = totalout.classrooms + parseInt(maudata[i][j].classrooms);
+          totalout.teachers = totalout.teachers + parseInt(maudata[i][j].teachers);
+          totalout.students = totalout.students + parseInt(maudata[i][j].students);
+      }
+    }
+
+  }
+  totalout.cschools = totalout.schools - parseInt(maudata[0].length);
+  document.getElementById("nschools").innerHTML = totalout.schools;
+  document.getElementById("cschools").innerHTML = totalout.cschools;
+  document.getElementById("nclassrooms").innerHTML = totalout.classrooms;
+  document.getElementById("nteachers").innerHTML = totalout.teachers;
+  document.getElementById("nstudents").innerHTML = totalout.students;
+}
+
+
 /**
  * Gets the values that are below and above the slider value
  * @param  {[int]} sliderval [The value of the slider ]
@@ -85,13 +117,15 @@ function getdots(sliderval) {
  * @return {[null]}           [Updates the chart ]
  */
 
-function drawgraph(sliderval, chart) {
+function drawgraph(sliderval, chart,dots) {
   sliderval= parseInt(sliderval);
-  var newdata = getdots(sliderval);
+
+  console.log(dots);
+  //var newdata = getdots(sliderval);
   var check= document.getElementById("myCheck").checked;
-  var zero = newdata[0];
-  var pos = newdata[1];
-  var neg = newdata[2];
+  var zero = dots.greyschools;
+  var pos = dots.inschoolsconn;
+  var neg = dots.inschoolsnotconn;
   console.log(zero +" " + pos +" " + neg);
 
   if(check){
@@ -151,32 +185,66 @@ function removeAll(chart) {
  * @return {[null]} [returns nothing, simply adds markers to every lat long location ]
  */
 function initializemap() {
-  for (var i = 0; i < maudata.length; i++) {
-    if (maudata[i].length > 0) {
-      for (var j = 0; j < maudata[i].length; j++) {
-        if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
-          if (maudata[i][j].mbps == 0) {
-            var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-              color: '#28C6C6',
-              fillColor: '#28C6C6',
-              fillOpacity: .6,
-              radius: 10
+  var check= document.getElementById("myCheck").checked;
+  if (check) {
+    for (var i = 0; i < maudata.length; i++) {
+      if (maudata[i].length > 0) {
+        for (var j = 0; j < maudata[i].length; j++) {
+          if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
+            if (maudata[i][j].mbps == 0) {
+              var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
+                color: '#646464',
+                fillColor: '#646464',
+                fillOpacity: .6,
+                radius: 10
 
-            }).addTo(allschools[0]);
+              }).addTo(allschools[0]);
 
-          } else {
-            var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-              color: '#28C6C6',
-              fillColor: '#28C6C6',
-              fillOpacity: .6,
-              radius: 10
+            } else {
+              var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
+                color: '#28C6C6',
+                fillColor: '#28C6C6',
+                fillOpacity: .6,
+                radius: 10
 
-            }).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
+              }).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
+            }
           }
         }
       }
     }
+
   }
+  else{
+    for (var i = 0; i < maudata.length; i++) {
+      if (maudata[i].length > 0) {
+        for (var j = 0; j < maudata[i].length; j++) {
+          if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
+            if (maudata[i][j].mbps == 0) {
+              var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
+                color: '#28C6C6',
+                fillColor: '#28C6C6',
+                fillOpacity: .6,
+                radius: 10
+
+              }).addTo(allschools[0]);
+
+            } else {
+              var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
+                color: '#28C6C6',
+                fillColor: '#28C6C6',
+                fillOpacity: .6,
+                radius: 10
+
+              }).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
+            }
+          }
+        }
+      }
+    }
+
+  }
+
 
   for (var i = 0; i < allschools.length; i++) {
     allschools[i].addTo(mymap);
@@ -214,11 +282,7 @@ function redraw(sliderval, mymap) {
         }
         allschools[i] = newlayer;
         newlayer.addTo(mymap);
-
       }
-
-
-
     }
   }
 
@@ -244,13 +308,7 @@ function redraw(sliderval, mymap) {
         }
         allschools[i] = newlayer;
         newlayer.addTo(mymap);
-
-
       }
-
-
-
-
     }
   }
 
@@ -269,7 +327,9 @@ function isNumeric(n) {
 function checkAddress(checkbox) {
   var sliderval=$('input[type="range"]').val();
   sliderval= parseInt(sliderval);
-  drawgraph(sliderval, myPie);
+  var mybounds = mymap.getBounds();
+  var dots= getdisplaypie(mybounds,sliderval,checkbox.checked)
+  drawgraph(sliderval, myPie,dots);
   var newlayer = L.layerGroup();
   if (mymap.hasLayer(allschools[0])) {
     mymap.removeLayer(allschools[0]);
@@ -323,4 +383,51 @@ function checkAddress(checkbox) {
     }
 
   }
+}
+
+
+function getdisplaypie(mybounds,sliderval,check) {
+  sliderval= parseInt(sliderval);
+  var totalout = {
+    inschoolsconn: 0,
+    inschoolsnotconn: 0,
+    greyschools: 0
+  };
+
+  for (var i = 0; i < maudata.length; i++) {
+    for (var j = 0; j < maudata[i].length; j++) {
+
+      if (maudata[i][j].lat && maudata[i][j].lon) {
+        var latlng = L.latLng(maudata[i][j].lat, maudata[i][j].lon);
+        if (mybounds.contains(latlng)) {
+          if(!check){
+            if(parseFloat(maudata[i][j].mbps)>=sliderval){
+              totalout.inschoolsconn = totalout.inschoolsconn + 1;
+            }else{
+              totalout.inschoolsnotconn = totalout.inschoolsnotconn + 1;
+            }
+
+          }else{
+            if(i==0){
+              totalout.greyschools= totalout.greyschools +1;
+            }
+            else if(parseFloat(maudata[i][j].mbps)>sliderval){
+              totalout.inschoolsconn = totalout.inschoolsconn + 1;
+            }else{
+              totalout.inschoolsnotconn = totalout.inschoolsnotconn + 1;
+            }
+
+          }
+
+
+        }
+
+      }
+
+    }
+
+  }
+  return totalout;
+  console.log(totalout);
+
 }
