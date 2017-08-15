@@ -143,37 +143,41 @@ p {
   position: absolute;
   /*border-radius: 25px;*/
   width: 8%;
-  height: 75vh;
+  height: 100%;
 
 }
 .slidercontainer{
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid white;
-  height: 50vh;
+  height: 50%;
+  margin-top: 10%;
+  padding-top: 10%
 
 }
 .infoc3{
   font-size: 1.6vmin !important;
   margin: 3%%;
   text-align: left;
-  padding: 5% 0  0 5%;
+  padding:  0 10% 0 5%;
   z-index: 1000000000000000000000000;
 
 }
 
 .slider {
-
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
-  margin-top: 20vh;
+  margin-top: 20%;
 
 }
 
+
+
 output {
   font-size: 3.2vmin;
-  padding: .3em;
+  padding: .5em;
+  margin-top: 2%;
   color: #F5A623;
 }
 

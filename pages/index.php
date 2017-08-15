@@ -120,7 +120,7 @@
     <div class="slidercontainer">
       <i class="fa fa-info-circle fa-inverse pull-left infoc3" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
       data-content="This slider shows threshold internet speed. For instance, if you only want to see schools that have a connectivity speed of over 4 Mpbs, put the slider on 4 and the schools below this speed will turn red. Uncheck the box to make all schools that are not connected, regarless of the threshhold, gray. "></i>
-      <div class="slider">
+      <div class="slider" style="height: 80%">
         <input type="range" min="0" max="8" value="0" data-rangeslider data-orientation="vertical">
         <output></output>
         <div class="mbps">
