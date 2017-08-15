@@ -130,7 +130,7 @@ function drawgraph(sliderval, chart,dots) {
 
   if(check){
     removeAll(chart);
-    addData(chart, "Zero Conn", zero, chartColors.zero);
+    addData(chart, "Zero Connection", zero, chartColors.zero);
     addData(chart, "Above Threshold", pos, chartColors.pos);
     addData(chart, "Below Threshold", neg, chartColors.neg);
     removeDatas(chart);

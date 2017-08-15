@@ -272,7 +272,7 @@
       options: {
         responsive: true,
         legend: {
-          display: false,
+          display: true,
           position: 'bottom'
 
         }
