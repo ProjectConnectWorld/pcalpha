@@ -28,6 +28,12 @@ body {
   width: auto;
   max-width: 80px;
 }
+.internal{
+  font-size: 3.0vmin;
+  color: white;
+  margin-top: 1%;
+  padding-right: 1%;
+}
 
 
 /*Left Mod*/

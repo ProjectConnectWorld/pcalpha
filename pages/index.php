@@ -57,11 +57,17 @@
 <body>
 
   <!-- Navigation Bar -->
-  <nav class="navbar ">
-    <!-- <img class="navbar-brand" style="max-height: 60px" src="../data/pclogo.svg" alt=""> -->
-    <object class="navbar-brand" height="90%" width="90%"data="../data/pclogo.svg" type="image/svg+xml"></object>
+    <nav class="navbar ">
+      <div class="pull-left">
+        <object class="navbar-brand" height="90%" width="90%"data="../data/pclogo.svg" type="image/svg+xml"></object>
+        <h3 class="internal pull-right">For Internal Use Only</h3>
 
-  </nav>
+      </div>
+      <div class="container pull-right">
+      </div>
+    </nav>
+
+
 
   <!-- Left Module  -->
   <div class="left-mod">
