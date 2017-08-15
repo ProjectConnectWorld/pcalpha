@@ -58,7 +58,8 @@
 
   <!-- Navigation Bar -->
   <nav class="navbar ">
-    <img class="navbar-brand" style="max-height: 60px" src="../data/pclogo.svg" alt="">
+    <!-- <img class="navbar-brand" style="max-height: 60px" src="../data/pclogo.svg" alt=""> -->
+    <object class="navbar-brand" height="100%" width="100%"data="../data/pclogo.svg" type="image/svg+xml"></object>
 
   </nav>
 
