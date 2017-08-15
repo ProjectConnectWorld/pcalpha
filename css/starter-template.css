@@ -16,7 +16,6 @@ body {
   height: 6vh;
   max-height: 7vh;
   padding: 0 0 2% 1%;
-  top: -10px;
 
 
 }
@@ -25,7 +24,7 @@ body {
   background: url(../data/pclogo.svg);
   left: 15px;
   height: 7vh;
-  max-height: 7vh;
+  max-height: 5vh;
   width: auto;
   max-width: 80px;
 }
