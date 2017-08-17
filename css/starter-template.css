@@ -40,7 +40,7 @@ body {
 }
 
 
-/*Left Mod*/
+
 
 .left-mod {
   margin-top: 2%;
@@ -52,15 +52,13 @@ body {
 }
 
 .left-mod .piechart {
-  position: relative;
   margin: 3%;
   margin-top: 5%;
   height: 30vh;
-  /*border-radius: 25px;*/
   background-color: rgba(0, 0, 0, 0.8);
-  width: 100%;
   border: 1px solid white;
   border-radius: 25px;
+  width: 100%;
 }
 .left-mod .piechart .piecontainer  {
   height: 70%;
@@ -94,9 +92,9 @@ body {
   margin: 3%;
   height: 40vh;
   background-color: rgba(0, 0, 0, 0.8);
-  width: 100%;
   border: 1px solid white;
   border-radius: 25px;
+  width: 100%
 }
 
 .left-mod .label {
@@ -174,6 +172,25 @@ p {
 }
 
 
+.left-mod .toggles{
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 1px solid white;
+  margin: 3%;
+  margin-top: 5%;
+  color: white;
+  text-align: center;
+  border-radius: 25px;
+  width: 100%;
+
+}
+
+.left-mod .toggles label{
+  font-size: 1.8vmin;
+  text-align: center;
+  margin: 3%;
+}
+
+
 /*Right Mod*/
 
 .right-mod {
@@ -184,7 +201,6 @@ p {
   /*border-radius: 25px;*/
   width: 8%;
   height: 100%;
-
 }
 .slidercontainer{
   background-color: rgba(0, 0, 0, 0.8);
@@ -228,20 +244,7 @@ output {
 }
 
 
-.right-mod .toggles{
-  background-color: rgba(0, 0, 0, 0.8);
-  border: 1px solid white;
-  margin-top: 5%;
-  color: white;
-  text-align: left;
-  border-radius: 25px;
-}
 
-.right-mod .toggles label{
-  text-align: center;
-  margin: 3%;
-  font-size: 1.8vmin;
-}
 
 .right-mod .disclaimer{
   background-color: rgba(0, 0, 0, 0.8);

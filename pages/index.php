@@ -130,6 +130,9 @@
       </ul>
 
     </div>
+    <div class="toggles ">
+      <label><input type="checkbox" name="optradio" id="myCheck"  checked="checked"  onclick="checkAddress(this)"> Show Zero-Conn</label>
+    </div>
 
   </div>
 
@@ -157,9 +160,9 @@
     </div>
 
 
-    <div class="toggles ">
+    <!-- <div class="toggles ">
       <label><input type="checkbox" name="optradio" id="myCheck"  checked="checked"  onclick="checkAddress(this)"> Show 0-Conn</label>
-    </div>
+    </div> -->
     <!-- <div class="toggles ">
       <label><input type="checkbox" name="optradio" id="myCheck2"  checked="checked"  onclick="addLayout(this)"> Show Outline</label>
     </div> -->
