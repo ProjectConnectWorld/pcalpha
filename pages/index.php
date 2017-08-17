@@ -119,16 +119,13 @@
           data-content="Percentage of schools in the window, based on the threshold speed chosen in the slider"></i>
       </div>
       <div class="piecontainer" style="position: relative;">
-
-
-      <canvas id="chart" style: "padding: 10px;"/>
+      <canvas id="chart" style: "padding: 5px;"/>
       </div>
       <ul class="legend">
         <li><span class="greater"></span> >= n Mbps </li>
         <li><span class="less"></span> < n Mbps</li>
         <li><span class="noconn"></span> No Internet Data</li>
       </ul>
-
     </div>
     <div class="toggles ">
       <label><input type="checkbox" name="optradio" id="myCheck"  checked="checked"  onclick="checkAddress(this)"> Show Zero-Conn</label>
@@ -307,6 +304,7 @@
         ]
         },
         options: {
+          maintainAspectRatio: false,
           responsive: true,
             legend: {
               display: false
