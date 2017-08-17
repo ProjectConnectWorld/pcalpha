@@ -21,13 +21,17 @@ body {
 }
 
 .navbar-brand {
-  background: url(../data/pclogo.svg);
   left: 15px;
   height: 7vh;
-  max-height: 5vh;
+  max-height: 4vh;
   width: auto;
   max-width: 80px;
+  margin: .5% 0 0 0;
 }
+.unicef{
+  z-index: 10000000;
+}
+
 .internal{
   font-size: 3.0vmin;
   color: white;
@@ -58,10 +62,32 @@ body {
   border: 1px solid white;
   border-radius: 25px;
 }
+.left-mod .piechart .piecontainer  {
+  height: 70%;
+
+}
+.left-mod .piechart  .legend{
+  height: 30%;
+  color: white;
+  font-size: .7em;
+  padding-top: 5%;
+  padding-bottom:5%;
+
+}
+
+.legend { list-style: none; }
+.legend li { float: left; margin-right: 10px; }
+.legend span { border: 1px solid #ccc; float: left; width: 12px; height: 12px; margin: 2px; }
+/* your colors */
+.legend .greater { background-color: #228B22; }
+.legend .less { background-color: #FFFF00; }
+.legend .noconn { background-color: #F94B4B; }
+
+
 
 .left-mod .piechart canvas {
   display: block;
-  padding: 5%;
+  padding: 10%;
 }
 
 .left-mod .dynamic {
@@ -107,7 +133,7 @@ body {
 }
 
 .contentlabel {
-  color: #646464;
+  color: white;
   font-size: 1.2vmin;
   text-align: left;
 }
@@ -146,6 +172,7 @@ p {
   padding: 2% 5%  0 0;
 
 }
+
 
 /*Right Mod*/
 

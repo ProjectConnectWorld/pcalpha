@@ -12,7 +12,10 @@ while (! feof($file)) {
     $school=fgetcsv($file);
     $response = new stdClass;
     $mbps=intval(ceil($school[7]));
-    if (is_numeric($school[7]) && $school[7]==0) {
+    $random= rand(0, 10);
+    echo $random;
+
+    if ((is_numeric($school[7]) && $school[7]==0) || (is_numeric($school[7]) && $random<8)) {
         echo "shit";
         $response->{'name'}= $str = mb_convert_encoding($school[3], "UTF-8");
         $response->{'lat'}= $school[2];
@@ -20,10 +23,11 @@ while (! feof($file)) {
         $response->{'classrooms'}= $school[4];
         $response->{'students'}= $school[5];
         $response->{'teachers'}= $school[6];
-        $response->{'mbps'}= $school[7];
+        $response->{'mbps'}= 0;
         array_push($arr[0], $response);
         // print_r($arr[0]);
     } elseif ($mbps<=8) {
+        echo "blah";
         $response->{'name'}= $str = mb_convert_encoding($school[3], "UTF-8");
         $response->{'lat'}= $school[2];
         $response->{'lon'}= $school[1];

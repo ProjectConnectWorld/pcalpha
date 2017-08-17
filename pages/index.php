@@ -61,12 +61,12 @@
   <!-- Navigation Bar -->
     <nav class="navbar ">
       <div class="pull-left">
-        <object class="navbar-brand" height="90%" width="90%"data="../data/pclogo.svg" type="image/svg+xml"></object>
-        <h3 class="internal pull-right">For Internal Use Only</h3>
 
+        <object class="navbar-brand" height="90%" width="90%"data="../data/pclogo.svg" type="image/svg+xml"></object>
+        <object class="navbar-brand pull-right" height="90%" width="90%"data="../data/unicefw.png"  style="margin-right: 15px"></object>
+        <!-- <h3 class="internal pull-right">For Internal Use Only</h3> -->
       </div>
-      <div class="container pull-right">
-      </div>
+
     </nav>
 
 
@@ -118,10 +118,19 @@
           <i class="fa fa-info-circle fa-inverse pull-right infoc2" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right"
           data-content="Percentage of schools in the window, based on the threshold speed chosen in the slider"></i>
       </div>
+      <div class="piecontainer" style="position: relative;">
 
-      <canvas id="chart" style: "padding: 10px"/>
+
+      <canvas id="chart" style: "padding: 10px;"/>
+      </div>
+      <ul class="legend">
+        <li><span class="greater"></span> >= n Mbps </li>
+        <li><span class="less"></span> < n Mbps</li>
+        <li><span class="noconn"></span> No Internet Data</li>
+      </ul>
 
     </div>
+
   </div>
 
   <!-- Right Module -->
@@ -151,10 +160,11 @@
     <div class="toggles ">
       <label><input type="checkbox" name="optradio" id="myCheck"  checked="checked"  onclick="checkAddress(this)"> Show 0-Conn</label>
     </div>
-    <div class="toggles ">
+    <!-- <div class="toggles ">
       <label><input type="checkbox" name="optradio" id="myCheck2"  checked="checked"  onclick="addLayout(this)"> Show Outline</label>
-    </div>
+    </div> -->
     <div class="disclaimer">
+      <!-- <p>For Internal use</p> -->
       <p>Connectivity data is randomly generated</p>
     </div>
   </div>
@@ -294,6 +304,7 @@
         ]
         },
         options: {
+          responsive: true,
             legend: {
               display: false
             },

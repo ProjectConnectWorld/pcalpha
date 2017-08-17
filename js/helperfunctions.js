@@ -198,7 +198,7 @@ function initializemap() {
                 fillOpacity: .6,
                 radius: 10
 
-              }).addTo(allschools[0]);
+              }).bindPopup("Name: "+ maudata[i][j].name + "<br>" + "Conn: "+ maudata[i][j].mbps).addTo(allschools[0]);
 
             } else {
               var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
@@ -207,7 +207,7 @@ function initializemap() {
                 fillOpacity: .6,
                 radius: 10
 
-              }).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
+              }).bindPopup("Name: "+ maudata[i][j].name + "<br>" + "Conn: "+ maudata[i][j].mbps).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
             }
           }
         }
@@ -227,7 +227,7 @@ function initializemap() {
                 fillOpacity: .6,
                 radius: 10
 
-              }).addTo(allschools[0]);
+              }).bindPopup("Name: "+ maudata[i][j].name + "<br>" + "Conn: "+ maudata[i][j].mbps).addTo(allschools[0]);
 
             } else {
               var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
@@ -236,7 +236,7 @@ function initializemap() {
                 fillOpacity: .6,
                 radius: 10
 
-              }).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
+              }).bindPopup("Name: "+ maudata[i][j].name + "<br>" + "Conn: "+ maudata[i][j].mbps).addTo(allschools[Math.ceil(maudata[i][j].mbps)]);
             }
           }
         }
@@ -277,7 +277,7 @@ function redraw(sliderval, mymap) {
               fillColor: '#FFFF00',
               fillOpacity: .6,
               radius: 10
-            }).addTo(newlayer);
+            }).bindPopup("Name: "+ maudata[i][j].name + "<br>" + "Conn: "+ maudata[i][j].mbps).addTo(newlayer);
           }
         }
         allschools[i] = newlayer;
@@ -303,7 +303,7 @@ function redraw(sliderval, mymap) {
               fillColor: '#228B22',
               fillOpacity: .6,
               radius: 10
-            }).addTo(newlayer);
+            }).bindPopup("Name: "+ maudata[i][j].name + "<br>" + "Conn: "+ maudata[i][j].mbps).addTo(newlayer);
           }
         }
         allschools[i] = newlayer;
@@ -342,7 +342,7 @@ function checkAddress(checkbox) {
           fillColor: '#F94B4B',
           fillOpacity: .6,
           radius: 10,
-        }).addTo(newlayer);
+        }).bindPopup("Name: "+ maudata[0][j].name + "<br>" + "Conn: "+ maudata[0][j].mbps).addTo(newlayer);
       }
     }
     allschools[0] = newlayer;
@@ -359,7 +359,7 @@ function checkAddress(checkbox) {
             fillColor: '#228B22',
             fillOpacity: .6,
             radius: 10
-          }).addTo(newlayer);
+          }).bindPopup("Name: "+ maudata[0][j].name + "<br>" + "Conn: "+ maudata[0][j].mbps).addTo(newlayer);
         }
       }
       allschools[0] = newlayer;
@@ -374,7 +374,7 @@ function checkAddress(checkbox) {
             fillColor: '#FFFF00',
             fillOpacity: .6,
             radius: 10
-          }).addTo(newlayer);
+          }).bindPopup("Name: "+ maudata[0][j].name + "<br>" + "Conn: "+ maudata[0][j].mbps).addTo(newlayer);
         }
       }
       allschools[0] = newlayer;
