@@ -78,6 +78,11 @@ body {
   text-align: center;
   font-size: 1.8vmin;
 }
+.right-mod .label {
+  color: #F5A623;
+  text-align: center;
+  font-size: 1.8vmin;
+}
 
 .left-mod #chart {
   margin: 0 auto;
@@ -158,9 +163,8 @@ p {
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid white;
   height: 50%;
-  margin-top: 10%;
-  padding-top: 10%;
   border-radius: 25px;
+  margin: 3%;
 
 }
 .infoc3{

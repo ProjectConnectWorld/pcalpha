@@ -64,11 +64,11 @@ function getstaticdisplayinfo(mybounds) {
 
   }
   totalout.cschools = totalout.schools - parseInt(maudata[0].length);
-  document.getElementById("nschools").innerHTML = totalout.schools;
-  document.getElementById("cschools").innerHTML = totalout.cschools;
-  document.getElementById("nclassrooms").innerHTML = totalout.classrooms;
-  document.getElementById("nteachers").innerHTML = totalout.teachers;
-  document.getElementById("nstudents").innerHTML = totalout.students;
+  document.getElementById("nschools").innerHTML = numberWithCommas(totalout.schools);
+  document.getElementById("cschools").innerHTML = numberWithCommas(totalout.cschools);
+  document.getElementById("nclassrooms").innerHTML = numberWithCommas(totalout.classrooms);
+  document.getElementById("nteachers").innerHTML = numberWithCommas(totalout.teachers);
+  document.getElementById("nstudents").innerHTML = numberWithCommas(totalout.students);
 }
 
 
@@ -130,16 +130,16 @@ function drawgraph(sliderval, chart,dots) {
 
   if(check){
     removeAll(chart);
-    addData(chart, "Zero Connection", zero, chartColors.zero);
-    addData(chart, "Above Threshold", pos, chartColors.pos);
-    addData(chart, "Below Threshold", neg, chartColors.neg);
+    addData(chart, "No Internet Data", zero, chartColors.zero);
+    addData(chart, ">= n Mbps", pos, chartColors.pos);
+    addData(chart, "< n Mbps", neg, chartColors.neg);
     removeDatas(chart);
     chart.update(1000, false);
 
   }else{
     removeAll(chart);
-    addData(chart, "Above Threshold", pos, chartColors.pos);
-    addData(chart, "Below Threshold", neg, chartColors.neg);
+    addData(chart, ">= n Mbps", pos, chartColors.pos);
+    addData(chart, "< n Mbps", neg, chartColors.neg);
     removeDatas(chart);
     chart.update(1000, false);
 
@@ -193,8 +193,8 @@ function initializemap() {
           if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
             if (maudata[i][j].mbps == 0) {
               var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-                color: '#646464',
-                fillColor: '#646464',
+                color: '#F94B4B',
+                fillColor: '#F94B4B',
                 fillOpacity: .6,
                 radius: 10
 
@@ -202,8 +202,8 @@ function initializemap() {
 
             } else {
               var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-                color: '#28C6C6',
-                fillColor: '#28C6C6',
+                color: '#228B22',
+                fillColor: '#228B22',
                 fillOpacity: .6,
                 radius: 10
 
@@ -222,8 +222,8 @@ function initializemap() {
           if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
             if (maudata[i][j].mbps == 0) {
               var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-                color: '#28C6C6',
-                fillColor: '#28C6C6',
+                color: '#228B22',
+                fillColor: '#228B22',
                 fillOpacity: .6,
                 radius: 10
 
@@ -231,8 +231,8 @@ function initializemap() {
 
             } else {
               var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-                color: '#28C6C6',
-                fillColor: '#28C6C6',
+                color: '#228B22',
+                fillColor: '#228B22',
                 fillOpacity: .6,
                 radius: 10
 
@@ -273,8 +273,8 @@ function redraw(sliderval, mymap) {
         for (var j = 0; j < maudata[i].length; j++) {
           if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
             var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-              color: '#F94B4B',
-              fillColor: '#F94B4B',
+              color: '#FFFF00',
+              fillColor: '#FFFF00',
               fillOpacity: .6,
               radius: 10
             }).addTo(newlayer);
@@ -299,8 +299,8 @@ function redraw(sliderval, mymap) {
         for (var j = 0; j < maudata[i].length; j++) {
           if (isNumeric(maudata[i][j].lat) && isNumeric(maudata[i][j].lon)) {
             var school = L.circle([maudata[i][j].lat, maudata[i][j].lon], {
-              color: '#28C6C6',
-              fillColor: '#28C6C6',
+              color: '#228B22',
+              fillColor: '#228B22',
               fillOpacity: .6,
               radius: 10
             }).addTo(newlayer);
@@ -338,8 +338,8 @@ function checkAddress(checkbox) {
     for (var j = 0; j < maudata[0].length; j++) {
       if (isNumeric(maudata[0][j].lat) && isNumeric(maudata[0][j].lon)) {
         var school = L.circle([maudata[0][j].lat, maudata[0][j].lon], {
-          color: '#646464',
-          fillColor: '#646464',
+          color: '#F94B4B',
+          fillColor: '#F94B4B',
           fillOpacity: .6,
           radius: 10,
         }).addTo(newlayer);
@@ -355,8 +355,8 @@ function checkAddress(checkbox) {
       for (var j = 0; j < maudata[0].length; j++) {
         if (isNumeric(maudata[0][j].lat) && isNumeric(maudata[0][j].lon)) {
           var school = L.circle([maudata[0][j].lat, maudata[0][j].lon], {
-            color: '#28C6C6',
-            fillColor: '#28C6C6',
+            color: '#228B22',
+            fillColor: '#228B22',
             fillOpacity: .6,
             radius: 10
           }).addTo(newlayer);
@@ -370,8 +370,8 @@ function checkAddress(checkbox) {
       for (var j = 0; j < maudata[0].length; j++) {
         if (isNumeric(maudata[0][j].lat) && isNumeric(maudata[0][j].lon)) {
           var school = L.circle([maudata[0][j].lat, maudata[0][j].lon], {
-            color: '#F94B4B',
-            fillColor: '#F94B4B',
+            color: '#FFFF00',
+            fillColor: '#FFFF00',
             fillOpacity: .6,
             radius: 10
           }).addTo(newlayer);
@@ -429,5 +429,43 @@ function getdisplaypie(mybounds,sliderval,check) {
   }
   return totalout;
   console.log(totalout);
+
+}
+
+
+
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+
+
+
+
+
+function addLayout(checkbox) {
+  var country= "mauritania"
+  if (checkbox.checked) {
+    countryLayer=L.geoJson(allcountries,{
+      filter: function (geoJsonFeature) {
+        if(geoJsonFeature.properties.name.replace(/\s/g,'').toLowerCase()==country.replace(/\s/g,'').toLowerCase()){
+          return true;
+        }else{
+          return false;
+        }
+      },
+      style:function (geoJsonFeature) {
+        return {fill:false ,color:"white"}
+      }
+    }).addTo(mymap);
+
+
+  }
+  else{
+    if(mymap.hasLayer(countryLayer)){
+      mymap.removeLayer(countryLayer);
+
+    }
+
+  }
 
 }

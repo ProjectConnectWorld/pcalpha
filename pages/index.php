@@ -39,6 +39,8 @@
   <script type="text/javascript" src="../data/maujson.js"></script>
   <script src="../js/helperfunctions.js"></script>
 
+  <script type="text/javascript" src ="../data/allcountries.js"></script>
+
 
 
 
@@ -75,7 +77,7 @@
       Country Attributes
         <!-- <button type="button" class="btn" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
         <i class="fa fa-info-circle fa-inverse " aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right"
-        data-content="This gives general information about schools in the entire country. "></i>
+        data-content="General information about schools in the entire country "></i>
         <!-- <button type="button" name="button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
     </div>
     <div class="dynamic">
@@ -114,7 +116,7 @@
     <div class="piechart  " id="piechart">
       <div class="dist">Connectivity
           <i class="fa fa-info-circle fa-inverse pull-right infoc2" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="right"
-          data-content="This shows the percentage of schools in the window, based on the threshold speed chosen in the slider. For instance, if you are zoomed in and only looking at schools in Nouakchott, and you have the slider set at 6 Mpbs, it will show you the percentage of schools connected with a speed over 6 Mpbs, under 6 Mpbs, and those schools with 0 connection in Nouakchott."></i>
+          data-content="Percentage of schools in the window, based on the threshold speed chosen in the slider"></i>
       </div>
 
       <canvas id="chart" style: "padding: 10px"/>
@@ -124,9 +126,17 @@
 
   <!-- Right Module -->
   <div class="right-mod">
+    <div class="label">
+      <i class="fa fa-info-circle fa-inverse " aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Threshold internet speed. Un-check this box to see all schools that are not connected (regardless of threshold speed)"></i>
+      Speed (Mbps)
+        <!-- <button type="button" class="btn" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
+        <!-- <i class="fa fa-info-circle fa-inverse " aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
+        data-content="General information about schools in the entire country "></i> -->
+        <!-- <button type="button" name="button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
+    </div>
     <div class="slidercontainer">
-      <i class="fa fa-info-circle fa-inverse pull-left infoc3" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
-      data-content="This slider shows threshold internet speed. For instance, if you only want to see schools that have a connectivity speed of over 4 Mpbs, put the slider on 4 and the schools below this speed will turn red. Uncheck the box to make all schools that are not connected, regarless of the threshhold, gray. "></i>
+      <!-- <i class="fa fa-info-circle fa-inverse pull-left infoc3" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
+      data-content="Threshold internet speed. Un-check this box to see all schools that are not connected (regardless of threshold speed)"></i> -->
       <div class="slider" style="height: 80%">
         <input type="range" min="0" max="8" value="0" data-rangeslider data-orientation="vertical">
         <output></output>
@@ -140,6 +150,9 @@
 
     <div class="toggles ">
       <label><input type="checkbox" name="optradio" id="myCheck"  checked="checked"  onclick="checkAddress(this)"> Show 0-Conn</label>
+    </div>
+    <div class="toggles ">
+      <label><input type="checkbox" name="optradio" id="myCheck2"  checked="checked"  onclick="addLayout(this)"> Show Outline</label>
     </div>
     <div class="disclaimer">
       <p>Connectivity data is randomly generated</p>
@@ -170,6 +183,8 @@
   <!-- Chart Color JS -->
   <script src="../node_modules/chart.js/samples/utils.js"></script>
 
+  <script type="text/javascript" src="../node_modules/chart.piecelabel.js/src/Chart.PieceLabel.js"></script>
+
 
 
 
@@ -191,6 +206,8 @@
     L.control.zoom({
       position: 'bottomleft'
     }).addTo(mymap);
+
+    var countryLayer = L.geoJson();
 
     var streetlayer = L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
       attribution: ' Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -271,31 +288,41 @@
           label: 'Dataset 1'
         }],
         labels: [
-          "Above Threshold",
-          "Below Threshold",
+          ">= n Mbps",
+          "< n Mbps",
 
         ]
-      },
-      options: {
-        responsive: true,
-        legend: {
-          display: true,
-          position: 'bottom'
+        },
+        options: {
+            legend: {
+              display: false
+            },
+            pieceLabel: {
+              render: 'percentage',
+              fontColor: "black",
+              overlap: true,
+              fontSize: 14,
+              fontStyle: 'bold'
 
-        }
+            }
       }
     };
 
 
 
 
+
+
+
     window.onload = function() {
       var ctx = document.getElementById("chart").getContext("2d");
-      window.myPie = new Chart(ctx, config);
+      window.myPie = new Chart(ctx,config);
+
       var mybounds = mymap.getBounds();
       var check= document.getElementById("myCheck").checked;
       var dots= getdisplaypie(mybounds,0,check)
       drawgraph(0, myPie,dots);
+      addLayout(document.getElementById("myCheck"));
 
     };
 
