@@ -138,23 +138,22 @@
     <div class="label">
       <i class="fa fa-info-circle fa-inverse " aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left" data-content="Threshold internet speed. Un-check this box to see all schools that are not connected (regardless of threshold speed)"></i>
       Speed (Mbps)
-        <!-- <button type="button" class="btn" data-container="body" data-toggle="popover" data-placement="right" data-content="Vivamus sagittis lacus vel augue laoreet rutrum faucibus."><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
-        <!-- <i class="fa fa-info-circle fa-inverse " aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
-        data-content="General information about schools in the entire country "></i> -->
-        <!-- <button type="button" name="button" data-toggle="popover" title="Popover title" data-content="And here's some amazing content. It's very engaging. Right?"><i class="fa fa-info-circle fa-inverse " aria-hidden="true" ></i></button> -->
     </div>
     <div class="slidercontainer">
-      <!-- <i class="fa fa-info-circle fa-inverse pull-left infoc3" aria-hidden="true" data-trigger="hover" data-container="body" data-toggle="popover" data-placement="left"
-      data-content="Threshold internet speed. Un-check this box to see all schools that are not connected (regardless of threshold speed)"></i> -->
-      <div class="slider" style="height: 80%">
-        <input type="range" min="0" max="8" value="0" data-rangeslider data-orientation="vertical">
-        <output></output>
-        <div class="mbps">
-          Mbps
-        </div>
-      </div>
+
+  <div class="slider" style="height: 80%">
+    <div class="pureslider" >
+      <input type="range" min="0" max="8" value="0" data-rangeslider data-orientation="vertical">
 
     </div>
+    <output></output>
+
+  </div>
+
+</div>
+
+
+
 
 
     <!-- <div class="toggles ">

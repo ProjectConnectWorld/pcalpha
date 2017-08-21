@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title></title>
+  <link rel='stylesheet' href='../node_modules/rangeslider.js/dist/rangeslider.css' type='text/css' />
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')
+  </script>
+
+  <script src="../node_modules/rangeslider.js/dist/rangeslider.min.js"></script>
+
+
+</head>
+
+<body>
+  <style>
+    body {
+      color: #404040;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding: 50px;
+    }
+
+    h1 {
+      font-size: 1.6em;
+      font-weight: 300;
+    }
+
+    output {
+      font-size: 2em;
+      padding: .3em;
+    }
+
+    .slider {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: center;
+      padding-top: 10px;
+    }
+
+    .slidercontainer {
+      width: 8%;
+      height: 60vh;
+    }
+  </style>
+
+  <h1>Vertical orientation support</h1>
+
+  <div class="slidercontainer">
+    <div class="slider" style="height: 60%">
+      <input type="range" min="0" max="10" value="0" data-rangeslider data-orientation="vertical">
+      <output></output>
+
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript">
+    var $element = $('input[type="range"]');
+    var $output = $('output');
+
+    function updateOutput(el, val) {
+      el.textContent = val;
+    }
+
+    $element
+      .rangeslider({
+        polyfill: false,
+        onInit: function() {
+          updateOutput($output[0], this.value);
+        }
+      })
+      .on('input', function() {
+        updateOutput($output[0], this.value);
+      });
+  </script>
+
+
+
+
+
+
+
+</body>
+
+</html>
