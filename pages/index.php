@@ -352,7 +352,7 @@
       .rangeslider({
         polyfill: false,
         onInit: function() {
-          updateOutput($output[0], this.value);
+          updateOutput($output[0], this.value + " Mbps");
           var prevstate = 0;
           var currstate = 0;
         },
@@ -369,7 +369,7 @@
         }
       })
       .on('input', function() {
-        updateOutput($output[0], this.value);
+        updateOutput($output[0], this.value + " Mbps");
       });
 
 
